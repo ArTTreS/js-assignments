@@ -530,16 +530,9 @@
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
  function distinct(arr) {
-     let buf = Array();
+    return arr.filter((el, i, arr) => i == arr.indexOf(el));
+ }
 
-     arr.filter(function (input) {
-         if (!buf.includes(input)){
-             buf.push(input);
-         }
-     });
-
-     return buf;
-}
 
 /**
  * Группирует элементы переданного массива по переанной keySelector функции
