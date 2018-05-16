@@ -21,10 +21,9 @@
  *   'aa',''    => 'aa'
  *   '',  'bb'  => 'bb'
  */
-function concatenateStrings(value1, value2) {
-    throw new Error('Not implemented');
+ function concatenateStrings(value1, value2) {
+     return value1 + value2;
 }
-
 
 /**
  * Возвращает длинну строки
@@ -37,8 +36,8 @@ function concatenateStrings(value1, value2) {
  *   'b'     => 1
  *   ''      => 0
  */
-function getStringLength(value) {
-    throw new Error('Not implemented');
+ function getStringLength(value) {
+      return value.length;
 }
 
 /**
@@ -54,8 +53,8 @@ function getStringLength(value) {
  *   'John','Doe'      => 'Hello, John Doe!'
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(firstName, lastName) {
-    throw new Error('Not implemented');
+ function getStringFromTemplate(firstName, lastName) {
+     return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -68,8 +67,8 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, John Doe!' => 'John Doe'
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
-function extractNameFromTemplate(value) {
-    throw new Error('Not implemented');
+ function extractNameFromTemplate(value) {
+     return value.slice(7,-1);
 }
 
 
@@ -83,8 +82,8 @@ function extractNameFromTemplate(value) {
  *   'John Doe'  => 'J'
  *   'cat'       => 'c'
  */
-function getFirstChar(value) {
-    throw new Error('Not implemented');
+ function getFirstChar(value) {
+     return value.charAt(0);
 }
 
 /**
@@ -98,8 +97,9 @@ function getFirstChar(value) {
  *   'cat'              => 'cat'
  *   '\tHello, World! ' => 'Hello, World!'
  */
-function removeLeadingAndTrailingWhitespaces(value) {
-    throw new Error('Not implemented');
+ function removeLeadingAndTrailingWhitespaces(value) {
+     value = value.trim();
+     return value;
 }
 
 /**
@@ -113,13 +113,13 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'A', 5  => 'AAAAA'
  *   'cat', 3 => 'catcatcat'
  */
-function repeatString(value, count) {
-    throw new Error('Not implemented');
+ function repeatString(value, count) {
+     return value.repeat(count);
 }
 
 /**
  * Удаляет первую встретившуюся последовательность симвоов из строки
- * 
+ *
  * @param {string} str
  * @param {string} value
  * @return {string}
@@ -129,8 +129,8 @@ function repeatString(value, count) {
  *   'I like legends', 'end' => 'I like legs',
  *   'ABABAB','BA' => 'ABAB'
  */
-function removeFirstOccurrences(str, value) {
-    throw new Error('Not implemented');
+ function removeFirstOccurrences(str, value) {
+     return str.replace(value, '');
 }
 
 /**
@@ -144,8 +144,8 @@ function removeFirstOccurrences(str, value) {
  *   '<span>' => 'span'
  *   '<a>' => 'a'
  */
-function unbracketTag(str) {
-    throw new Error('Not implemented');
+ function unbracketTag(str) {
+     return str.slice(1,-1);
 }
 
 
@@ -159,8 +159,8 @@ function unbracketTag(str) {
  *   'Thunderstruck' => 'THUNDERSTRUCK'
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
-function convertToUpperCase(str) {
-    throw new Error('Not implemented');
+ function convertToUpperCase(str) {
+     return str.toUpperCase();
 }
 
 /**
@@ -173,8 +173,8 @@ function convertToUpperCase(str) {
  *   'angus.young@gmail.com;brian.johnson@hotmail.com;bon.scott@yahoo.com' => ['angus.young@gmail.com', 'brian.johnson@hotmail.com', 'bon.scott@yahoo.com']
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(str) {
-    throw new Error('Not implemented');
+ function extractEmails(str) {
+     return str.split(';');
 }
 
 /**
@@ -200,9 +200,10 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(width, height) {
-    throw new Error('Not implemented');
-}
+ function getRectangleString(width, height) {
+     let horLine = '─', verLine = '│', space = ' ';
+     return ('┌' + horLine.repeat(width - 2) + '┐' + '\n') + (verLine + space.repeat(width - 2) + verLine + '\n').repeat(height - 2) + ('└' + horLine.repeat(width - 2) + '┘' + '\n');
+ }
 
 
 /**
@@ -220,9 +221,25 @@ function getRectangleString(width, height) {
  *   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(str) {
-    throw new Error('Not implemented');
-}
+
+ function encodeToRot13(str) {
+     var outStr = '';
+     var input  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+     var output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+     var checkSym = 0;
+
+     for (var i = 0; i < str.length; i++) {
+         checkSym = input.indexOf(str[i]);
+
+         if (checkSym === -1) {
+             outStr += str[i];
+         } else {
+             outStr += output[checkSym];
+         }
+     }
+
+     return outStr;
+ }
 
 /**
  * Возвращает булевое значение, является ли входной параметр строкой
@@ -237,37 +254,40 @@ function encodeToRot13(str) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(value) {
-    throw new Error('Not implemented');
+ function isString(value) {
+     return (typeof value === 'string' || value instanceof String);
 }
 
 
 /**
  * Возвращает id игровой карты
- * 
+ *
  * Исходная доска игровых карт представлена следующим порядком строк:
- * 
+ *
  *  'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
  *  'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
  *  'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
  *  'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'
- * 
+ *
  * (see https://en.wikipedia.org/wiki/Standard_52-card_deck)
  * Function returns the zero-based index of specified card in the initial deck above.
- * 
+ *
  * @param {string} value
  * @return {number}
  *
  * @example
  *   'A♣' => 0
- *   '2♣' => 1 
+ *   '2♣' => 1
  *   '3♣' => 2
  *     ...
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(value) {
-    throw new Error('Not implemented');
+ function getCardId(value) {
+     let sym = '♣♦♥♠';
+     let num = ' A234567891JQK';
+     let ans = value.length === 2 ? sym.indexOf(value[1]) * 13 + num.indexOf(value[0]) : sym.indexOf(value[2]) * 13 + num.indexOf(value[0]);
+     return --ans;
 }
 
 
